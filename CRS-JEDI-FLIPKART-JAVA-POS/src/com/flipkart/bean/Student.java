@@ -3,71 +3,52 @@ package com.flipkart.bean;
 
 
 public class Student extends User {
-	private String branchName;
-	private int studentId;
-	private int batch;
-	private boolean isApproved;
 	
 	
+	private String department;
+	private String studentId;
+	private int gradYear;
+	boolean isApproved;
 	
-	public Student(String userId, String name, String password, String address, String role, String branchName, int studentId, int batch, boolean isApproved) {
-		super(userId, name, password,address, role);
-		this.branchName = branchName;
+	//Constructing User of a Student type.
+	public Student(String userId, String name, String role, String password, String gender, String address,String branchName,String studentId,int batch,boolean isApproved) {
+		super(userId, name, role, password,gender,address);
+		this.department = branchName;
 		this.studentId = studentId;
-		this.batch = batch;
+		this.gradYear = batch;
 		this.isApproved = isApproved;
-		this.role = role;
-		
-		
 	}
 
-
-	public String getBranchName() {
-		return branchName;
+	public String getDepartment() {
+		return department;
 	}
-	
 
-	public void setBranchName(String branchName) {
-		this.branchName = branchName;
+	public void setDepartment(String department) {
+		this.department = department;
 	}
-	
-	
-	public int getStudentId() {
+
+	public String getStudentId() {
 		return studentId;
 	}
-	
-	
-	public void setStudentId(int studentId) {
+
+	public void setStudentId(String studentId) {
 		this.studentId = studentId;
 	}
-	
 
-	public int getBatch() {
-		return batch;
+	public int getGradYear() {
+		return gradYear;
 	}
-	
-	
-	public void setBatch(int batch) {
-		this.batch = batch;
+
+	public void setGradYear(int gradYear) {
+		this.gradYear = gradYear;
 	}
-	
 
 	public boolean isApproved() {
 		return isApproved;
 	}
 
-	
 	public void setApproved(boolean isApproved) {
 		this.isApproved = isApproved;
-	}
-	
-	public String getRole() {
-		return role;
-	}
-	
-
-	public void setRole(String role) {
-		this.role = role;
 	}
 	
 	
