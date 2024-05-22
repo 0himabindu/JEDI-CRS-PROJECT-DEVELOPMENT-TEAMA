@@ -4,8 +4,20 @@ import com.flipkart.bean.Student;
 import java.util.*;
 
 public class StudentTasks implements StudentInterface{
+	private static volatile StudentTasks instance=null;
 	public Vector <Student> studentslist = new Vector <Student>();
-
+	
+	public static StudentTasks getInstance()
+	{
+		if(instance==null)
+		{
+			// This is a synchronized block, when multiple threads will access this instance
+			synchronized(StudentTasks.class){
+				instance=new StudentTasks();
+			}
+		}
+		return instance;
+	}
 
 	public String register(String name,String userId,String password,String gender,int batch,String branch,String address) 
 	{
