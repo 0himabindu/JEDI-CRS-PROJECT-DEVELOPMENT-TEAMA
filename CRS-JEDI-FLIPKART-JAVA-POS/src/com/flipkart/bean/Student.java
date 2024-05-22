@@ -10,7 +10,7 @@ public class Student extends User {
 	
 	
 	
-	public Student(String userId, String name, String password, String address,String branchName,int studentId,int batch,boolean isApproved, String role) {
+	public Student(String userId, String name, String password, String address, String role, String branchName, int studentId, int batch, boolean isApproved) {
 		super(userId, name, password,address, role);
 		this.branchName = branchName;
 		this.studentId = studentId;
@@ -18,11 +18,6 @@ public class Student extends User {
 		this.isApproved = isApproved;
 		this.role = role;
 		
-		
-	}
-	
-	
-	public Student() {
 		
 	}
 
