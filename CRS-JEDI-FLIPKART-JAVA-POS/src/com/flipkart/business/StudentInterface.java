@@ -2,8 +2,7 @@ package com.flipkart.business;
 
 public interface StudentInterface {
 	
-	public int register(String name, String User_Id, String password, String address, String role, int student_Id, int batch, boolean isApproved, String branchName);
-	
+	public String register(String name,String userID,String password,String gender,int batch,String branch,String address); 	
 	public int getStudentlist();
 		
 }

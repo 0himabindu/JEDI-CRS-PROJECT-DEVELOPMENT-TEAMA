@@ -7,12 +7,16 @@ public class StudentTasks implements StudentInterface{
 	public Vector <Student> studentslist = new Vector <Student>();
 
 
-	public int register(String name, String User_Id, String password, String address, String role, int student_Id, int batch, boolean isApproved, String branchName)
+	public String register(String name,String userId,String password,String gender,int batch,String branch,String address) 
 	{
-		Student newstd = new Student(User_Id, name, password, address, branchName, student_Id, batch, isApproved, role); 
-		studentslist.add(newstd);
-		System.out.println("New user added");
-		return 0;
+		String studentId = userId;
+			//call the DAO class, and add the student record to the DB
+		System.out.println("1 reg");
+		Student newStudent=new Student(userId,name,"STUDENT",password,gender,address,branch,userId,batch,false);
+		System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
+		studentslist.add(newStudent);
+			
+		return studentId;
 	}
 
 	@Override
