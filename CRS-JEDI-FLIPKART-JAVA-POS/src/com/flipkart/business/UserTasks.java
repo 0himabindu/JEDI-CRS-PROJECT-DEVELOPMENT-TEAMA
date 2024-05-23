@@ -7,14 +7,6 @@ public class UserTasks implements UserInterface {
     private static volatile UserTasks instance = null;
     private final Map<String, String> credentialsMap = new HashMap<>();
 
-    public static UserTasks getInstance() {
-        if (instance == null) {
-            synchronized (UserTasks.class) {
-                instance = new UserTasks();
-            }
-        }
-        return instance;
-    }
 
     @Override
     public boolean updatePassword(String userID, String newPassword) {
