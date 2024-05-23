@@ -1,14 +1,28 @@
+/**
+ * 
+ */
 package com.flipkart.business;
 
-import com.flipkart.bean.Course;
-
+import java.sql.SQLException;
 import java.util.List;
+
+
+import com.flipkart.bean.*;
+import com.flipkart.exception.GradeNotAllotedException;
+
+/**
+ *
+ */
 
 public interface ProfessorInterface {
 	
+	public boolean addGrade(String studentID, String courseID, String grade) throws GradeNotAllotedException;
+	
+	public List<Course> viewCourses(String profID);
 
-	public List<Course> getCourses(String profId);
+	String getProfessorById(String profId);
+
+	public List<EnrolledStudent> viewEnrolledStudents(String profId) throws SQLException;
+
 	
-	
-	public String getProfessorById(String profId);
 }
