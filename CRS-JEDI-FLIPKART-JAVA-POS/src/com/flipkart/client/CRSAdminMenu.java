@@ -7,18 +7,18 @@ import com.flipkart.business.AdminOperation;
 
 
 public class CRSAdminMenu {
-    public int adminId;
+    public String adminId;
 
-    public CRSAdminMenu(int id) {
+    public CRSAdminMenu(String id) {
         adminId = id;
     }
 
     public void ShowOptions() {
         // TODO Auto-generated method stub
         Scanner sc = new Scanner(System.in);
-        AdminInterface adminService = new AdminService();
+        AdminInterface adminService = new AdminOperation();
         int a = 1;
-        while (a != 0) {
+        while (a != 0) { 
             System.out.println("Enter the choice: ");
             System.out.println("1. Add course ");
             System.out.println("2. Delete the course ");
@@ -28,26 +28,7 @@ public class CRSAdminMenu {
             System.out.println("0. Exit ");
             a = sc.nextInt();
 
-            switch (a) {
-                case 0:
-                    return;
-                case 1:
-                    adminService.addCourse(adminId);
-                    break;
-                case 2:
-                    adminService.deleteCourse(adminId);
-                    break;
-                case 3:
-                    adminService.closeRegistration();
-                    break;
-                case 4:
-                    adminService.showCourses(adminId);
-                    break;
-                case 5:
-                    adminService.assignCourse();
-                default:
-                    continue;
-            }
+            
         }
 
     }

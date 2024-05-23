@@ -29,5 +29,10 @@ public class StudentTasks implements StudentInterface{
 		}
 		return 0;
 	}
+	
+	@Override
+	public boolean isApproved(String studentId) {
+		return true;
+	}
 
 }

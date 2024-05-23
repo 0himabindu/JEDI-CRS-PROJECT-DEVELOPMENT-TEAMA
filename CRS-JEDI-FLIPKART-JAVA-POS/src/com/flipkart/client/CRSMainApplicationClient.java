@@ -3,6 +3,8 @@
  */
 package com.flipkart.client;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 
@@ -79,15 +81,58 @@ public class CRSMainApplicationClient {
 		loggedin = userInterface.verifyCredentials(userId, password);
 
 			
-		if (loggedin) {
-			System.out.println("Login Successful");
+		DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm:ss");
+	    LocalDateTime myDateObj = LocalDateTime.now();
+	    String formattedDate = myDateObj.format(myFormatObj);
+	    String role = userInterface.getRole(userId);
+	    System.out.println(role);
+	    if (loggedin) {
+	    switch (role) {
+	        case "Admin":
+	            System.out.println("+----------------------------+");
+	            System.out.println("|   " + formattedDate + "      |");
+	            System.out.println("|   Admin Login Successful   |");
+	            System.out.println("+----------------------------+");
+	            System.out.println("       Welcome " + userInterface.getName(userId));
+	            CRSAdminMenu adminMenu = new CRSAdminMenu(userId);
+//	            adminMenu.createMenu();
+	            break;
+	        case "Professor":
+	            System.out.println("+-----------------------------+");
+	            System.out.println("|     " + formattedDate + "     |");
+	            System.out.println("| Professor Login Successful  |");
+	            System.out.println("+-----------------------------+");
+	            System.out.println("        Welcome " + userInterface.getName(userId));
 
+	           CRSProfessorMenu professorMenu = new CRSProfessorMenu();
+//	            professorMenu.createMenu(userId);
+	            break;
+	        case "Student":
+	            String studentId = userId;
+	            boolean isApproved = studentInterface.isApproved(studentId);
+	            if (isApproved) {
+	                System.out.println("+-----------------------------+");
+	                System.out.println("|     " + formattedDate + "     |");
+	                System.out.println("|  Student Login Successful   |");
+	                System.out.println("+----------------------------+");
+	                System.out.println("     Welcome " + userInterface.getName(userId));
 
-		} 
-		else {
-			System.out.println("Invalid Credentials!");
+	                CRSStudentMenu studentMenu = new CRSStudentMenu();
+//	                studentMenu.create_menu(studentId);
+	            } else {
+	                System.out.println("\u001B[31m+---------------------------------------------------------------------+");
+	                System.out.println("|   \u001B[31mFailed to login, you have not been approved by the administration!   \u001B[31m|");
+	                System.out.println("+---------------------------------------------------------------------+\u001B[0m");
+	                loggedin = false;
+	            }
+	            break;
+	    }
+	} else {
+		System.out.println("\u001B[31m+------------------------+");
+		System.out.println("|   Invalid Credentials! |");
+		System.out.println("+------------------------+\u001B[0m");
 
-		}	
+	}
 	}
 	/**
 	 * Method to help Student register themselves, pending admin approval
