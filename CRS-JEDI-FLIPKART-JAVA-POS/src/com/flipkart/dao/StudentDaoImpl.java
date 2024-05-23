@@ -34,7 +34,6 @@ public class StudentDaoImpl implements StudentDaoInterface {
 		return instance;
 	}
 	
-	@Override
 	public String addStudent(Student student) {
 		Connection connection=DBUtils.getConnection();
 		
