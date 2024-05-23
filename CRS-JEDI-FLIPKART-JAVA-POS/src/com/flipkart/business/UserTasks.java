@@ -7,10 +7,6 @@ public class UserTasks implements UserInterface {
     private static volatile UserTasks instance = null;
     private final Map<String, String> credentialsMap = new HashMap<>();
 
-    private UserTasks() {
-        
-    }
-
     public static UserTasks getInstance() {
         if (instance == null) {
             synchronized (UserTasks.class) {
