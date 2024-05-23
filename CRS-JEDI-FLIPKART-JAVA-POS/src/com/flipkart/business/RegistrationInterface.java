@@ -6,6 +6,7 @@ import java.util.*;
 
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Grade;
 
 /**
  * 
@@ -55,7 +56,7 @@ public interface RegistrationInterface {
 	 * @return List of Student's Grades
 	 * @throws SQLException 
 	 */
-//	List<Grade> viewGradeCard(String studentId);
+	List<Grade> viewGradeCard(String studentId);
 
 	/** Method for Fee Calculation for selected courses
 	 * Fee calculation for selected courses
