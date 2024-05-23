@@ -1,11 +1,17 @@
-/**
- * 
- */
 package com.flipkart.exception;
+ class CourseNotAvailableException extends Exception{
+	
+	private String courseCode;
 
-/**
- * 
- */
-public class CourseNotAvailableException {
+	public CourseNotAvailableException(String courseCode)
+	{	
+		this.courseCode = courseCode;
+	}
+
+
+	public String getMessage() {
+		return  "Seats are not available in : " + courseCode;
+	}
+
 
 }
