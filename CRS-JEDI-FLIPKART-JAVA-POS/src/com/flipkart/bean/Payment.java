@@ -1,23 +1,23 @@
 package com.flipkart.bean;
 
 public class Payment {
-    private int studentId;
-    private int referenceId;
+    private String studentId;
+    private String referenceId;
     private int amount;
     private String status;
 
-    Payment(int studentId, int referenceId, int amount, String status) {
+    Payment(String studentId, String referenceId, int amount, String status) {
         this.studentId = studentId;
         this.referenceId = referenceId;
         this.amount = amount;
         this.status = status;
     }
 
-    public int getStudentId() {
+    public String getStudentId() {
         return studentId;
     }
 
-    public void setStudentId(int studentId) {
+    public void setStudentId(String studentId) {
         this.studentId = studentId;
     }
 
@@ -29,11 +29,11 @@ public class Payment {
         this.amount = amount;
     }
 
-    public int getReferenceId() {
+    public String getReferenceId() {
         return referenceId;
     }
 
-    public void setReferenceId(int referenceId) {
+    public void setReferenceId(String referenceId) {
         this.referenceId = referenceId;
     }
 

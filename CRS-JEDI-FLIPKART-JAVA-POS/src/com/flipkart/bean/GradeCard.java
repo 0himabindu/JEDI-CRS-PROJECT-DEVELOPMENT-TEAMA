@@ -6,17 +6,17 @@ import java.util.List;
 
 public class GradeCard 
 {
-	Student stud;
+	String studentID;
 	int sem;
 	float cpi;
 	List<String> reg_list ;
 
-	public Student getStud() {
-		return stud;
+	public String getStud() {
+		return studentID;
 	}
 
-	public void setStud(Student stud) {
-		this.stud = stud;
+	public void setStud(String stud) {
+		this.studentID = studentID;
 	}
 
 
