@@ -2,11 +2,13 @@ package com.flipkart.business;
 
 import java.util.UUID;
 
+import com.flipkart.dao.PaymentNotificationDaoImpl;
+
 
 public class PaymentNotificationTasks implements PaymentNotificationInterface{
 	
 	private static volatile PaymentNotificationTasks instance=null;
-	PaymentNotificationTasks notificationDaoInterface=new PaymentNotificationTasks();
+	PaymentNotificationDaoImpl notificationDaoInterface=PaymentNotificationDaoImpl.getInstance();
 	private PaymentNotificationTasks() {}
 	
 	public static PaymentNotificationTasks getInstance()
