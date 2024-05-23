@@ -94,8 +94,8 @@ public class CRSMainApplicationClient {
 	            System.out.println("|   Admin Login Successful   |");
 	            System.out.println("+----------------------------+");
 	            System.out.println("       Welcome " + userInterface.getName(userId));
-	            CRSAdminMenu adminMenu = new CRSAdminMenu(userId);
-//	            adminMenu.createMenu();
+	            CRSAdminMenu adminMenu = new CRSAdminMenu();
+	            adminMenu.createMenu();
 	            break;
 	        case "Professor":
 	            System.out.println("+-----------------------------+");

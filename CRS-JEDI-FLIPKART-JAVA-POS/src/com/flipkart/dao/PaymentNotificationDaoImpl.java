@@ -1,6 +1,3 @@
-2/**
- * 
- */
 
 package com.flipkart.dao;
 
