@@ -1,4 +1,4 @@
-/**
+2/**
  * 
  */
 
@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.UUID;
 
 import com.flipkart.utils.DBUtils;
@@ -39,7 +40,7 @@ public class PaymentNotificationDaoImpl implements PaymentNotificationDaoInterfa
 		Connection connection=DBUtils.getConnection();
 		try
 		{
-			PreparedStatement ps = connection.prepareStatement("insert into notification(studentId,type,referenceId) values(?,?,?);");
+			PreparedStatement ps = connection.prepareStatement("insert into notification(studentId,type,referenceId) values(?,?,?);", Statement.RETURN_GENERATED_KEYS);
 			ps.setInt(1, studentId);
 			ps.setString(2,type.toString());
 			if(type=="PAID")

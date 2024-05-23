@@ -1,6 +1,8 @@
 package com.flipkart.business;
 
 import com.flipkart.bean.Student;
+import com.flipkart.dao.StudentDaoInterface;
+
 import java.util.*;
 
 public class StudentTasks implements StudentInterface{
@@ -8,14 +10,11 @@ public class StudentTasks implements StudentInterface{
 	public Vector <Student> studentslist = new Vector <Student>();
 	
 
-	public String register(String name,String userId,String password,String gender,int batch,String branch,String address) 
-	{
-		String studentId = userId;
-			//call the DAO class, and add the student record to the DB
-		System.out.println("1 reg");
-		Student newStudent=new Student(userId,name,"STUDENT",password,gender,address,branch,userId,batch,false);
-		System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
-		studentslist.add(newStudent);
+	public String register(String name,String userId,String password,String gender,int batch,String branch,String address){
+			String studentId;
+			Student newStudent=new Student(userId,name,"Student",password,gender,address,branch,userId,batch,false);
+			System.out.println("\nYour account has been created and pending for Approval by Admin.\n");
+			studentId=StudentDaoInterface.addStudent(newStudent);
 			
 		return studentId;
 	}
