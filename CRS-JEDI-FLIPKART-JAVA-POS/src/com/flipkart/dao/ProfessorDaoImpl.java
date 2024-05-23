@@ -39,7 +39,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 		Connection connection=DBUtils.getConnection();
 		List<Course> courseList=new ArrayList<Course>();
 		try {
-			PreparedStatement statement = connection.prepareStatement("select * from course where professorId=?");
+			PreparedStatement statement = connection.prepareStatement("select * from Course where InstructorId=?");
 			
 			statement.setString(1, profId);
 			
@@ -77,7 +77,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 		Connection connection=DBUtils.getConnection();
 		List<EnrolledStudent> enrolledStudents=new ArrayList<EnrolledStudent>();
 		try {
-			PreparedStatement statement = connection.prepareStatement("select course.courseCode,course.courseName,registeredcourse.studentId from course inner join registeredcourse on course.courseCode = registeredcourse.courseCode where course.professorId = ? order by course.courseCode");
+			PreparedStatement statement = connection.prepareStatement("select Course.courseCode,Course.CourseName,RegisteredCourses.student from Course inner join RegisteredCourses on Course.courseCode = RegisteredCourses.courseId where Course.InstructorId = ? order by Course.courseCode");
 			statement.setString(1, courseId);
 			
 			ResultSet results = statement.executeQuery();
@@ -112,7 +112,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 	public Boolean addGrade(String studentId,String courseCode,String grade) {
 		Connection connection=DBUtils.getConnection();
 		try {
-			PreparedStatement statement = connection.prepareStatement("update registeredcourse set grade=? where courseCode=? and studentId=?");
+			PreparedStatement statement = connection.prepareStatement("update RegisteredCourses set grade=? where courseCode=? and student=?");
 			
 			statement.setString(1, grade);
 			statement.setString(2, courseCode);
@@ -154,7 +154,7 @@ public class ProfessorDaoImpl implements ProfessorDaoInterface {
 		Connection connection=DBUtils.getConnection();
 		try 
 		{
-			PreparedStatement statement = connection.prepareStatement( "select name from user where userId = ?");
+			PreparedStatement statement = connection.prepareStatement( "select name from User where userID = ?");
 			
 			statement.setString(1, profId);
 			ResultSet rs = statement.executeQuery();

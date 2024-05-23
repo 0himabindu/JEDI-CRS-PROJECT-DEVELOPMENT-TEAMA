@@ -105,7 +105,7 @@ public class CRSMainApplicationClient {
 	            System.out.println("        Welcome " + userInterface.getName(userId));
 
 	           CRSProfessorMenu professorMenu = new CRSProfessorMenu();
-//	            professorMenu.createMenu(userId);
+	            professorMenu.createMenu(userId);
 	            break;
 	        case "Student":
 	            String studentId = userId;
