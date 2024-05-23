@@ -12,7 +12,11 @@ public class RegisteredCourse {
         this.studentId = studentId;
         this.grade = grade;
     }
-
+    
+    public RegisteredCourse()
+    {
+    	
+    }
     public String getCourseId() {
         return courseId;
     }

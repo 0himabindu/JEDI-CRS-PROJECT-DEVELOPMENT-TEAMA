@@ -13,6 +13,11 @@ public class Professor extends User{
 	public Professor(String userID, String name, String gender, String role, String password, String address) {
 		super(userID, name, role, password, gender, address);
 	}
+	
+	public Professor()
+	{
+		
+	}
 
 
 

@@ -18,6 +18,10 @@ public class Student extends User {
 		this.gradYear = batch;
 		this.isApproved = isApproved;
 	}
+	
+	public Student() {
+		
+	}
 
 	public String getDepartment() {
 		return department;

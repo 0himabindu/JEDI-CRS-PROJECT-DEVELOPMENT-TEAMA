@@ -21,6 +21,11 @@ public abstract class User {
 		this.password = password;
 		this.address = address;
 	}
+	
+	public User() {
+		
+	}
+
 	public String getUserId() {
 		return userId;
 	}

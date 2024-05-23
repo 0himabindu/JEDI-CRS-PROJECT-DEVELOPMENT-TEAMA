@@ -1,73 +1,94 @@
-/**
- * 
- */
 package com.flipkart.business;
 
+import java.util.List;
 import java.util.Vector;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Professor;
+import com.flipkart.bean.RegisteredCourse;
 import com.flipkart.bean.Student;
+import com.flipkart.dao.AdminDaoImpl;
+import com.flipkart.dao.AdminDaoInterface;
 
-/**
- * 
- */
 public class AdminOperation implements AdminInterface {
-	public Vector <Professor> Professorslist = new Vector <Professor>();
-
-	public boolean addProfessor(String userID, String name, String gender, String role, String password, String address) {
-		// TODO Auto-generated method stub
-		Professor newpf = new Professor(userID, name, gender, role, password, address); 
-		Professorslist.add(newpf);
-		System.out.println("New Professor added");
-
-		return false;
+	
+	private static volatile AdminOperation instance = null;
+	
+	public AdminOperation()
+	{
+		
 	}
 	
-	public int getStudentlist() {
-		// TODO Auto-generated method stub
-		for (Professor professor: Professorslist) {
-			System.out.println("Details of the customer are: " + professor.getName() + " "
-					+ professor.getDepartment() + " " + professor.getDepartment());
+	
+	public static AdminOperation getInstance()
+	{
+		if(instance == null)
+		{
+			synchronized(AdminOperation.class){
+				instance = new AdminOperation();
+			}
 		}
-		return 0;
+		return instance;
+	}
+	
+	AdminDaoInterface adminDaoOperation =AdminDaoImpl.getInstance();
+
+	
+	@Override
+	public List<Course> viewCourses()
+	{
+		return adminDaoOperation.viewCourses();
+	}
+	@Override
+	public List<Professor> viewProfessors()
+	{
+		return adminDaoOperation.viewProfessors();
+	}
+	
+
+	@Override
+	public List<Student> viewPendingAdmissions() {
+		return adminDaoOperation.viewPendingAdmissions();
+	}
+	
+	@Override
+	public List<RegisteredCourse> generateGradeCard(String Studentid)
+	{
+		return adminDaoOperation.generateGradeCard(Studentid);
+	}
+	
+	@Override
+	public void removeCourse(String dropCourseCode) 
+	{	
+		adminDaoOperation.removeCourse(dropCourseCode);
 	}
 
 	@Override
-	public boolean assignCourse(int professorId, String courseCode) {
-		// TODO Auto-generated method stub
-		return false;
+	public void addCourse(Course newCourse, List<Course> courseList)
+	{
+		adminDaoOperation.addCourse(newCourse);
+	}
+	
+	@Override
+	public void approveStudent(String studentId, List<Student> studentList) 
+	{
+		adminDaoOperation.approveStudent(studentId);
 	}
 
 	@Override
-	public boolean approveStudent(int studentId) {
-		// TODO Auto-generated method stub
-		return false;
+	public void addProfessor(Professor professor) {
+			adminDaoOperation.addProfessor(professor);
+	}
+	
+	@Override
+	public void assignCourse(String courseCode, String professorId) 
+	{
+		adminDaoOperation.assignCourse(courseCode, professorId);
 	}
 
-	@Override
-	public boolean updateDetails() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean addCourse(Course newCourse) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean removeCourse(String courseCode) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 
-	@Override
-	public boolean generateReportCard() {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 
 }
