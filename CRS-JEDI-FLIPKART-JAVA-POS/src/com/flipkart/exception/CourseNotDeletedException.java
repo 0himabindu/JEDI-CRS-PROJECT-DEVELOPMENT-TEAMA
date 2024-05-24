@@ -3,9 +3,7 @@
  */
 package com.flipkart.exception;
 
-/**
- *
- */
+
 
 public class CourseNotDeletedException extends Exception {
 	
@@ -15,7 +13,7 @@ public class CourseNotDeletedException extends Exception {
 	{	
 		this.courseCode = courseCode;
 	}
-	
+
 	/**
 	 * Getter function for course code
 	 * @return

@@ -1,13 +1,10 @@
-/**
- * 
- */
+
 package com.flipkart.exception;
 
-/**
- * 
- */
-public class UserNotFoundException  extends Exception{
-	
+
+
+public class UserNotFoundException extends Exception {
+
 	private String userId;
 
 	/***

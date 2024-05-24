@@ -1,9 +1,6 @@
 package com.flipkart.exception;
 
-/**
- * @author Group-A
- *
- */
+
 
 public class UserNotAddedException extends Exception{
 	private String userId;

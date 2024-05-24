@@ -1,25 +1,31 @@
-/**
- * 
- */
 package com.flipkart.business;
-import java.util.*;
 
+import java.sql.SQLException;
+import java.util.List;
 
 import com.flipkart.bean.Course;
 import com.flipkart.bean.Grade;
+import com.flipkart.bean.Notification;
+import com.flipkart.bean.Grade;
+import com.flipkart.constant.PaymentModeConstant;
 
-/**
- * 
- */
+import com.flipkart.exception.CourseLimitExceededException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.SeatNotAvailableException;
+
+
+
 public interface RegistrationInterface {
 	
-	public boolean addCourse(String courseCode, String studentId, List<Course> availableCourseList);
+		public boolean addCourse(String courseCode, String studentId, List<Course> availableCourseList)
+			throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException;
+
 	/**
 	 * Method to set student registration status
 	 * @param studentId
 	 * @throws SQLException
 	 */
-	void setRegistrationStatus(String studentId);
+	void setRegistrationStatus(String studentId) throws SQLException;
 
 	/**
 	 *  Method to check student registration status
@@ -27,13 +33,9 @@ public interface RegistrationInterface {
 	 * @return boolean indicating if the student's registration status
 	 * @throws SQLException
 	 */
-	boolean getRegistrationStatus(String studentId);
+	boolean getRegistrationStatus(String studentId) throws SQLException;
 	
-	boolean dropCourse(String courseCode, String studentId, List<Course> registeredCourseList);
-	
-	
-	
-	boolean getPaymentStatus(String studentId);
+	boolean getPaymentStatus(String studentId) throws SQLException;
 
 	/**
 	 * Method to view the list of courses registered by the student
@@ -41,7 +43,7 @@ public interface RegistrationInterface {
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	List<Course> viewRegisteredCourses(String studentId);
+	List<Course> viewRegisteredCourses(String studentId) throws SQLException;
 
 	/**
 	 *  Method to view the list of available courses
@@ -49,14 +51,15 @@ public interface RegistrationInterface {
 	 * @return List of courses
 	 * @throws SQLException 
 	 */
-	List<Course> viewCourses(String studentId);
+	List<Course> viewCourses(String studentId) throws SQLException;
+
 	/**
 	 * Method to view grade card for students
 	 * @param studentId
 	 * @return List of Student's Grades
 	 * @throws SQLException 
 	 */
-	List<Grade> viewGradeCard(String studentId);
+	List<Grade> viewGradeCard(String studentId) throws SQLException;
 
 	/** Method for Fee Calculation for selected courses
 	 * Fee calculation for selected courses
@@ -64,7 +67,7 @@ public interface RegistrationInterface {
 	 * @return Fee Student has to pay
 	 * @throws SQLException 
 	 */
-	double calculateFee(String studentId);
+	double calculateFee(String studentId) throws SQLException;
 
 	/**
 	 *  Method to drop Course selected by student
@@ -75,10 +78,11 @@ public interface RegistrationInterface {
 	 * @throws CourseNotFoundException
 	 * @throws SQLException 
 	 */
+	boolean dropCourse(String courseCode, String studentId, List<Course> registeredCourseList)
+			throws CourseNotFoundException, SQLException;
+
+	public boolean isReportGenerated(String studentId) throws SQLException;
+
+	public void setPaymentStatus(String studentId) throws SQLException;
 	
-
-	public boolean isReportGenerated(String studentId);
-
-	public void setPaymentStatus(String studentId);
-
 }

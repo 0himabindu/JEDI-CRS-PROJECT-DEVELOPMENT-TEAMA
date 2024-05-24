@@ -1,5 +1,14 @@
 package com.flipkart.dao;
+///**
+// * 
+// */
+//package com.flipkart.dao;
+//
+//import com.flipkart.bean.RegisteredCourse;
+//
 
-public class GradeCardDaoInterface {
-
-}
+//public interface GradeCardDaoInterface {
+//	
+//	public float calculateCGPA(int studentID);
+//
+//}

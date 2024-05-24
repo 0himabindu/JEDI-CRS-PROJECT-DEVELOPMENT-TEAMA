@@ -3,48 +3,71 @@ package com.flipkart.bean;
 import java.util.List;
 
 
-
 public class GradeCard 
 {
-	String studentID;
+	Student stud;
 	int sem;
-	float cpi;
-	List<String> reg_list ;
+	float cgpa;
+	List<RegisteredCourse> reg_list ;
+	
+	/*public float calCGPA()
+	{
+		return 0;
+	}*/
 
-	public String getStud() {
-		return studentID;
+	/**
+	 * @return the stud
+	 */
+	public Student getStud() {
+		return stud;
 	}
 
-	public void setStud(String stud) {
-		this.studentID = studentID;
+	/**
+	 * @param stud the stud to set
+	 */
+	public void setStud(Student stud) {
+		this.stud = stud;
 	}
 
-
+	/**
+	 * @return the sem
+	 */
 	public int getSem() {
 		return sem;
 	}
 
-	void setSem(int sem) {
+	/**
+	 * @param sem the sem to set
+	 */
+	public void setSem(int sem) {
 		this.sem = sem;
 	}
 
-	
-	public float cpi() {
-		return cpi;
+	/**
+	 * @return the cgpa
+	 */
+	public float getCgpa() {
+		return cgpa;
 	}
 
-	
-	public void setCgpa(float cpi) {
-		this.cpi = cpi;
+	/**
+	 * @param cgpa the cgpa to set
+	 */
+	public void setCgpa(float cgpa) {
+		this.cgpa = cgpa;
 	}
 
-	
-	public List<String> getReg_list() {
+	/**
+	 * @return the reg_list
+	 */
+	public List<RegisteredCourse> getReg_list() {
 		return reg_list;
 	}
 
-	
-	public void setReg_list(List<String> reg_list) {
+	/**
+	 * @param reg_list the reg_list to set
+	 */
+	public void setReg_list(List<RegisteredCourse> reg_list) {
 		this.reg_list = reg_list;
 	}
 	

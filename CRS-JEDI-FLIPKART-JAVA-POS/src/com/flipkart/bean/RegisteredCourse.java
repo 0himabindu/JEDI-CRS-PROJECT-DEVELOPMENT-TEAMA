@@ -1,51 +1,70 @@
+/**
+ * 
+ */
 package com.flipkart.bean;
 
-public class RegisteredCourse {
-    private String courseId;
-    private int semester;
-    private String studentId;
-    private String grade;
 
-    RegisteredCourse(String courseId, int semester, String studentId, String grade) {
-        this.courseId = courseId;
-        this.semester = semester;
-        this.studentId = studentId;
-        this.grade = grade;
-    }
-    
-    public RegisteredCourse()
-    {
-    	
-    }
-    public String getCourseId() {
-        return courseId;
-    }
 
-    public void setCourseId(String courseId) {
-        this.courseId = courseId;
-    }
+import com.flipkart.constant.GradeConstant;
 
-    public int getSemester() {
-        return semester;
-    }
+public class RegisteredCourse 
+{
+	Course course;
+	String studentId;
+	GradeConstant grade;
+	
+	
+	
+	/**
+	 * @return the course
+	 */
+	public Course getCourse() {
+		return course;
+	}
+	
+	
+	/**
+	 * @param course the course to set
+	 */
+	public void setCourse(Course course) {
+		this.course = new Course(course.getCourseCode(), course.getCourseName(), course.getInstructorId() ,course.getSeats(), course.getCourseFee());
+	}
+	
+	
+	/**
+	 * @return the studentId
+	 */
+	public String getstudentId() {
+		return studentId;
+	}
+	
+	
+	/**
+	 * @param studentId the studentId to set
+	 */
+	public void setstudentId(String studentId) {
+		this.studentId = studentId;
+	}
+	
+	
+	/**
+	 * @return the grade
+	 */
+	public GradeConstant getGrade() {
+		return grade;
+	}
+	
+	
+	
+	/**
+	 * @param grade the grade to set
+	 */
+	public void setGrade(String grade) {
+		this.grade = GradeConstant.valueOf(grade);
+	}
+	
+	
+	
+	
 
-    public void setSemester(int semester) {
-        this.semester = semester;
-    }
-
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getGrade() {
-        return grade;
-    }
-
-    public void setGrade(String grade) {
-        this.grade = grade;
-    }
 }

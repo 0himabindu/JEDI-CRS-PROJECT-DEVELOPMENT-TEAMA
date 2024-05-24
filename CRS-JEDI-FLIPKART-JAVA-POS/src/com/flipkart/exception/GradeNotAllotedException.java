@@ -3,9 +3,6 @@
  */
 package com.flipkart.exception;
 
-/**
- *
- */
 
 public class GradeNotAllotedException extends Exception{
 	 

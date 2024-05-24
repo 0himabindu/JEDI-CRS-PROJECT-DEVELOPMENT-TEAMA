@@ -3,9 +3,6 @@
  */
 package com.flipkart.exception;
 
-/**
- *
- */
 
 public class StudentNotFoundForApprovalException extends Exception{
 	
@@ -23,6 +20,7 @@ public class StudentNotFoundForApprovalException extends Exception{
 		return StudentId;
 	}
 	
+
 	/**
 	 * Message returned when exception is thrown
 	 */

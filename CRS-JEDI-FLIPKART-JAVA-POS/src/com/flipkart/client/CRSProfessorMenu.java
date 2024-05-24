@@ -10,18 +10,15 @@ import java.util.Scanner;
 import com.flipkart.bean.Course;
 import com.flipkart.bean.EnrolledStudent;
 import com.flipkart.business.ProfessorInterface;
+import com.flipkart.business.ProfessorOperation;
 import com.flipkart.exception.GradeNotAllotedException;
-import com.flipkart.business.ProfessorTasks;
-//import com.flipkart.validator.ProfessorValidator;
+import com.flipkart.validator.ProfessorValidator;
 
 
-/**
- *
- */
 
 public class CRSProfessorMenu {
 	
-	ProfessorInterface professorInterface = ProfessorTasks.getInstance();
+	ProfessorInterface professorInterface = ProfessorOperation.getInstance();
 
 	/**
 	 * @param profID
@@ -55,7 +52,7 @@ public class CRSProfessorMenu {
 		            addGrade(profID);
 		            break;
 		        case 4:
-		        	CRSMainApplicationClient.loggedin = false;
+		            CRSMainApplicationClient.loggedin = false;
 		            return;
 		        default:
 		            System.out.println("Please select an appropriate option...");
@@ -128,10 +125,13 @@ public class CRSProfessorMenu {
 	        System.out.print("Enter grade: ");
 	        grade = in.nextLine();
 
-	        
-	        professorInterface.addGrade(studentId, courseCode, grade);
-	        System.out.println("Grade added successfully for " + studentId);
-	        
+	        if (!(ProfessorValidator.isValidStudent(enrolledStudents, studentId)
+	                && ProfessorValidator.isValidCourse(coursesEnrolled, courseCode))) {
+	            professorInterface.addGrade(studentId, courseCode, grade);
+	            System.out.println("Grade added successfully for " + studentId);
+	        } else {
+	            System.out.println("\u001B[31mInvalid data entered, try again!\u001B[0m");
+	        }
 	    } catch (GradeNotAllotedException ex) {
 	        System.out.println("\u001B[31mGrade cannot be added for " + ex.getStudentId() + "\u001B[0m");
 	    } catch (SQLException e) {

@@ -1,47 +1,78 @@
 package com.flipkart.bean;
 
-public class Payment {
-    private String studentId;
-    private String referenceId;
-    private int amount;
-    private String status;
 
-    Payment(String studentId, String referenceId, int amount, String status) {
-        this.studentId = studentId;
-        this.referenceId = referenceId;
-        this.amount = amount;
-        this.status = status;
-    }
 
-    public String getStudentId() {
-        return studentId;
-    }
-
-    public void setStudentId(String studentId) {
-        this.studentId = studentId;
-    }
-
-    public int getAmount() {
-        return amount;
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public String getReferenceId() {
-        return referenceId;
-    }
-
-    public void setReferenceId(String referenceId) {
-        this.referenceId = referenceId;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+public class Payment 
+{
+	Student stud;
+	String InvoiceID;
+	float amount;
+	boolean status;
+	
+	
+	/**
+	 * @return the stud
+	 */
+	public Student getStud() {
+		return stud;
+	}
+	
+	
+	/**
+	 * @param stud the stud to set
+	 */
+	public void setStud(Student stud) {
+		this.stud = stud;
+	}
+	
+	
+	/**
+	 * @return the invoiceID
+	 */
+	public String getInvoiceID() {
+		return InvoiceID;
+	}
+	
+	
+	/**
+	 * @param invoiceID the invoiceID to set
+	 */
+	public void setInvoiceID(String invoiceID) {
+		InvoiceID = invoiceID;
+	}
+	
+	
+	/**
+	 * @return the amount
+	 */
+	public float getAmount() {
+		return amount;
+	}
+	
+	
+	/**
+	 * @param amount the amount to set
+	 */
+	public void setAmount(float amount) {
+		this.amount = amount;
+	}
+	
+	
+	/**
+	 * @return the status
+	 */
+	public boolean isStatus() {
+		return status;
+	}
+	
+	
+	/**
+	 * @param status the status to set
+	 */
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
+	
+	
+	
 }

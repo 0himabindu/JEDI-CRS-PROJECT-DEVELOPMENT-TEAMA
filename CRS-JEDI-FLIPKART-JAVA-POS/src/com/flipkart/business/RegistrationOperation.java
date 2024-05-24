@@ -4,9 +4,15 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.flipkart.bean.Course;
+import com.flipkart.bean.Notification;
 import com.flipkart.bean.Grade;
+import com.flipkart.constant.PaymentModeConstant;
 import com.flipkart.dao.RegistrationDAOInterface;
-import com.flipkart.dao.RegistrationDaoImpl;
+import com.flipkart.dao.RegistrationDAOImple;
+import com.flipkart.exception.CourseLimitExceededException;
+import com.flipkart.exception.CourseNotFoundException;
+import com.flipkart.exception.SeatNotAvailableException;
+import com.flipkart.validator.StudentValidator;
 
 
 
@@ -31,19 +37,29 @@ public class RegistrationOperation implements RegistrationInterface {
 		return instance;
 	}
 
-	RegistrationDAOInterface registrationDaoInterface = RegistrationDaoImpl.getInstance();
+	RegistrationDAOInterface registrationDaoInterface = RegistrationDAOImple.getInstance();
 
-	
+	/**
+	 * Method to add Course selected by student 
+	 * @param courseCode
+	 * @param studentId
+	 * @param courseList 
+	 * @return boolean indicating if the course is added successfully
+	 * @throws CourseNotFoundException
+	 * @throws SeatNotAvailableException 
+	 * @throws CourseLimitExceedException 
+	 * @throws SQLException 
+	 */
 	@Override
 	
-	public boolean addCourse(String courseCode, String studentId,List<Course> availableCourseList)
+	public boolean addCourse(String courseCode, String studentId,List<Course> availableCourseList) throws CourseNotFoundException, CourseLimitExceededException, SeatNotAvailableException, SQLException 
 	{
        
 		
 
 		if (registrationDaoInterface.numOfRegisteredCourses(studentId) >= 6)
 		{	
-//			throw new CourseLimitExceededException(6);
+			throw new CourseLimitExceededException(6);
 		}
 		else if (registrationDaoInterface.isRegistered(courseCode, studentId)) 
 		{
@@ -51,8 +67,12 @@ public class RegistrationOperation implements RegistrationInterface {
 		} 
 		else if (!registrationDaoInterface.seatAvailable(courseCode)) 
 		{
-//			throw new SeatNotAvailableException(courseCode);
+			throw new SeatNotAvailableException(courseCode);
 		} 
+		else if(!StudentValidator.isValidCourseCode(courseCode, availableCourseList))
+		{
+			throw new CourseNotFoundException(courseCode);
+		}
 		
 		  
 
@@ -60,20 +80,36 @@ public class RegistrationOperation implements RegistrationInterface {
 
 	}
 
-	
+	/**
+	 *  Method to drop Course selected by student
+	 * @param courseCode
+	 * @param studentId
+	 * @param registeredCourseList 
+	 * @return boolean indicating if the course is dropped successfully
+	 * @throws CourseNotFoundException
+	 * @throws SQLException 
+	 */
 	@Override
 	
-	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) {
-		 
+	public boolean dropCourse(String courseCode, String studentId,List<Course> registeredCourseList) throws CourseNotFoundException, SQLException {
+		  if(!StudentValidator.isRegistered(courseCode, studentId, registeredCourseList))
+	        {
+	        	throw new CourseNotFoundException(courseCode);
+	        }
 		
 		return registrationDaoInterface.dropCourse(courseCode, studentId);
 
 	}
 
-	
+	/** Method for Fee Calculation for selected courses
+	 * Fee calculation for selected courses
+	 * @param studentId
+	 * @return Fee Student has to pay
+	 * @throws SQLException 
+	 */
 	@Override
 	
-	public double calculateFee(String studentId) {
+	public double calculateFee(String studentId) throws SQLException {
 		return registrationDaoInterface.calculateFee(studentId);
 	}
 
@@ -86,7 +122,7 @@ public class RegistrationOperation implements RegistrationInterface {
 	 */
 	@Override
 	
-	public List<Grade> viewGradeCard(String studentId)  {
+	public List<Grade> viewGradeCard(String studentId) throws SQLException {
 		return registrationDaoInterface.viewGradeCard(studentId);
 	}
 
@@ -98,7 +134,7 @@ public class RegistrationOperation implements RegistrationInterface {
 	 */
 	@Override
 	
-	public List<Course> viewCourses(String studentId)  {
+	public List<Course> viewCourses(String studentId) throws SQLException {
 		return registrationDaoInterface.viewCourses(studentId);
 	}
 
@@ -110,7 +146,7 @@ public class RegistrationOperation implements RegistrationInterface {
 	 */
 	@Override
 	
-	public List<Course> viewRegisteredCourses(String studentId)  {
+	public List<Course> viewRegisteredCourses(String studentId) throws SQLException {
 		return registrationDaoInterface.viewRegisteredCourses(studentId);
 	}
     
@@ -122,7 +158,7 @@ public class RegistrationOperation implements RegistrationInterface {
 	 */
 	@Override
 
-	public boolean getRegistrationStatus(String studentId)  {
+	public boolean getRegistrationStatus(String studentId) throws SQLException {
 		return registrationDaoInterface.getRegistrationStatus(studentId);
 	}
 	
@@ -133,30 +169,28 @@ public class RegistrationOperation implements RegistrationInterface {
 	 */
 	@Override
 	
-	public void setRegistrationStatus(String studentId)  {
+	public void setRegistrationStatus(String studentId) throws SQLException {
 		registrationDaoInterface.setRegistrationStatus(studentId);
 
 	}
 
 	@Override
-	public boolean isReportGenerated(String studentId)  {
+	public boolean isReportGenerated(String studentId) throws SQLException {
 		
 		return registrationDaoInterface.isReportGenerated(studentId);
 	}
 
 	@Override
-	public boolean getPaymentStatus(String studentId)
+	public boolean getPaymentStatus(String studentId) throws SQLException 
 	{
 		return registrationDaoInterface.getPaymentStatus(studentId);
 		
 	}
 
 	@Override
-	public void setPaymentStatus(String studentId) {
+	public void setPaymentStatus(String studentId) throws SQLException{
 		registrationDaoInterface.setPaymentStatus(studentId);
 		
 	}
-
-	
 
 }

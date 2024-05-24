@@ -1,8 +1,6 @@
 package com.flipkart.exception;
 
-/**
- *
- */
+
 
 public class StudentNotRegisteredException extends Exception{
 	 private String studentName;
@@ -20,9 +18,5 @@ public class StudentNotRegisteredException extends Exception{
 	 {
 		 return studentName;
 	 }
-	 
-		public String getMessage() {
-			return "stadent: " + studentName + " is not registered.";
-		}
 	 
 }

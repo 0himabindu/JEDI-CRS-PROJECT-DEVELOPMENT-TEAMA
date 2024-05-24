@@ -1,8 +1,5 @@
 package com.flipkart.exception;
 
-/**
- *
- */
 
 public class StudentIdAlreadyInUseException extends Exception{
 	private String StudentId;

@@ -1,8 +1,6 @@
 package com.flipkart.exception;
 
-/**
- *
- */
+
 
 public class ProfessorNotAddedException extends Exception{
 	private String professorId;
